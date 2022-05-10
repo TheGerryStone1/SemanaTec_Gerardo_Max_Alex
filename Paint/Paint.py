@@ -1,7 +1,5 @@
 """Paint, for drawing shapes.
-
 Exercises
-
 1. Add a color.
 2. Complete circle.
 3. Complete rectangle.
@@ -119,6 +117,7 @@ def names():
 
 state = {'start': None, 'shape': line}
 setup(420, 420, 370, 0)
+names()
 onscreenclick(tap)
 listen()
 onkey(undo, 'u')
@@ -130,7 +129,7 @@ onkey(lambda: color('red'), 'R')
 onkey(lambda: color('pink'), 'P')   
 onkey(lambda: store('shape', line), 'l')
 onkey(lambda: store('shape', square), 's')
-onkey(lambda: store('shape', circle), 'c')
+onkey(lambda: store('shape', circle2), 'c')
 onkey(lambda: store('shape', rectangle), 'r')
 onkey(lambda: store('shape', triangle), 't')
 done()
