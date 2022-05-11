@@ -1,7 +1,4 @@
 """Snake, classic arcade game.
-Gerardo Mora Beltran
-Maximiliano Martinez Marquez
-Alejandro Treviño Garcia
 
 Exercises
 
@@ -13,14 +10,19 @@ Exercises
 
 from random import randrange, choice
 from turtle import *
-
 from freegames import square, vector
 
-# food inicia en el centro, la snake al lado, y la dirección hacía abajo
 food = vector(0, 0)
 foodRef = vector(0,0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
+colorList = ['green', 'blue', 'orange', 'purple', 'pink', 'black', 'grey', 'yellow', 'lime', 'teal']
+snakeColor = choice(colorList)
+colorList.remove(snakeColor)
+headColor = choice(colorList)
+colorList.remove(headColor)
+foodColor = choice(colorList)
+colorList.remove(foodColor)
 moveFood = 0
 speed = 100
 
@@ -37,6 +39,12 @@ def names():
     write('Alejandro Treviño Garcia', align = 'left', font = ('arial', 7, 'normal'))
     down()
 
+
+def store(key, value):
+    """Store value in state at key."""
+    state[key] = value
+
+
 def changeSpeed(key):
     global speed
     if key == '1':
@@ -46,16 +54,18 @@ def changeSpeed(key):
     
     return
 
+
 def change(x, y):
     """Change snake direction."""
     aim.x = x
     aim.y = y
 
+
 def inside(head):
     """Return True if head inside boundaries."""
     return -200 < head.x < 190 and -200 < head.y < 190
 
-# funcion move del programa (no de la clase vector)
+
 def move():
     """Move snake forward one segment."""
     head = snake[-1].copy()
@@ -82,32 +92,48 @@ def move():
 
     for body in snake:
         if body == head:
-            square(body.x, body.y, 9, 'black')
+            square(body.x, body.y, 9, headColor)
         else:
-            square(body.x, body.y, 9, 'green')
+            square(body.x, body.y, 9, snakeColor)
     
     global moveFood
     
-    if moveFood % 7 == 0:
+    if moveFood % 10 == 0:
         while True:
-            food.x = foodRef.x + randrange(-1, 1) * 10
-            food.y = foodRef.y + randrange(-1, 1) * 10
+            foodRandomizer = choice([1, 2, 3, 4])
+            
+            if foodRandomizer == 1:
+                food.x = foodRef.x
+                food.y = foodRef.y + 10
+                
+            elif foodRandomizer == 2:
+                food.x = foodRef.x
+                food.y = foodRef.y - 10
+                
+            elif foodRandomizer == 3:
+                food.x = foodRef.x + 10
+                food.y = foodRef.y
+                
+            else:
+                food.x = foodRef.x - 10
+                food.y = foodRef.y
+            
+            foodRef.x = food.x
+            foodRef.y = food.y
             
             if food not in snake:
                 break
     
     moveFood += 1
-    square(food.x, food.y, 9, 'orange')
+    square(food.x, food.y, 9, foodColor)
     names()
     update()
     ontimer(move, speed)
 
-
-#setup configura la ventana 420 de ancho y 420 de alto, la esquina superior izquierda 370
 setup(420, 420, 370, 0)
-hideturtle() # esconde la turtle
-tracer(False) # esconde el graficado
-listen() # activamos el escuchar los eventos del teclado
+hideturtle()
+tracer(False)
+listen()
 onkey(lambda: change(10, 0), 'Right')
 onkey(lambda: change(-10, 0), 'Left')
 onkey(lambda: change(0, 10), 'Up')
@@ -116,4 +142,4 @@ onkey(lambda: changeSpeed('1'), '1')
 onkey(lambda: changeSpeed('2'), '2')
 move()
 print(snake)
-done() # debe de ser la última instrucción
+done()
