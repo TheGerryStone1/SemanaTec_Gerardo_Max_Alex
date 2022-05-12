@@ -1,7 +1,5 @@
 """Memory, puzzle game of number pairs.
-
 Exercises:
-
 1. Count and print how many taps occur.
 2. Decrease the number of tiles to a 4x4 grid.
 3. Detect when all tiles are revealed.
@@ -24,18 +22,31 @@ hide = [True] * (n * n)
 
 def names():
     up()
-    goto(30, 170)
+    goto(-180, 250)
     color('black')
-    write('Gerardo Mora Beltran', align = 'left', font = ('arial', 7, 'normal'))
-    goto(30, 140)
+    write('Gerardo Mora Beltran', align = 'left', font = ('arial', 9, 'normal'))
+    goto(-180, 230)
     color('black')
-    write('Maximiliano Martinez Marquez', align = 'left', font = ('arial', 7, 'normal'))
-    goto(30, 110)
+    write('Maximiliano Martinez Marquez', align = 'left', font = ('arial', 9, 'normal'))
+    goto(-180, 210)
     color('black')
-    write('Alejandro Treviño Garcia', align = 'left', font = ('arial', 7, 'normal'))
+    write('Alejandro Treviño Garcia', align = 'left', font = ('arial', 9, 'normal'))
+    down()
+
+def displayCounter():
+    up()
+    goto(120, 230)
+    color('black')
+    write("Taps: " + str(counter), align = 'left', font = ('arial', 16, 'normal'))
+    down()
+
+def displayWinner():
+    up()
+    goto(-180, -240)
+    color('black')
+    write('Ganaste un auto!, Felicidades!', align = 'left', font = ('arial', 12, 'normal'))
     down()
     
-
 def square(x, y):
     """Draw white square with black outline at (x, y)."""
     up()
@@ -81,6 +92,7 @@ def tap(x, y):
     
     if revealedCounter == len(tiles) / 2:
         print("Ganaste un auto!, Felicidades!")
+        displayWinner()
         exit()
 
 
@@ -108,11 +120,12 @@ def draw():
 
     update()
     names()
+    displayCounter()
     ontimer(draw, 100)
 
 
 shuffle(tiles)
-setup(420, 420, 370, 0)
+setup(550, 550, 500, 0)
 addshape(car)
 hideturtle()
 tracer(False)
