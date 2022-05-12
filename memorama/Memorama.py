@@ -14,11 +14,27 @@ from turtle import *
 
 from freegames import path
 
+counter = 0
+revealedCounter = 0
+n = 8
 car = path('car.gif')
-tiles = list(range(32)) * 2
+tiles = list(range(int(n * n/2))) * 2
 state = {'mark': None}
-hide = [True] * 64
+hide = [True] * (n * n)
 
+def names():
+    up()
+    goto(30, 170)
+    color('black')
+    write('Gerardo Mora Beltran', align = 'left', font = ('arial', 7, 'normal'))
+    goto(30, 140)
+    color('black')
+    write('Maximiliano Martinez Marquez', align = 'left', font = ('arial', 7, 'normal'))
+    goto(30, 110)
+    color('black')
+    write('Alejandro Treviño Garcia', align = 'left', font = ('arial', 7, 'normal'))
+    down()
+    
 
 def square(x, y):
     """Draw white square with black outline at (x, y)."""
@@ -35,16 +51,20 @@ def square(x, y):
 
 def index(x, y):
     """Convert (x, y) coordinates to tiles index."""
-    return int((x + 200) // 50 + ((y + 200) // 50) * 8)
+    global n
+    return int((x + 200) // 50 + ((y + 200) // 50) * n)
 
 
 def xy(count):
     """Convert tiles count to (x, y) coordinates."""
-    return (count % 8) * 50 - 200, (count // 8) * 50 - 200
+    return (count % n) * 50 - 200, (count // n) * 50 - 200
 
 
 def tap(x, y):
     """Update mark and hidden tiles based on tap."""
+    global counter
+    global revealedCounter
+    
     spot = index(x, y)
     mark = state['mark']
 
@@ -54,16 +74,25 @@ def tap(x, y):
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
+        revealedCounter += 1
+    
+    counter += 1
+    print("Taps: " + str(counter))
+    
+    if revealedCounter == len(tiles) / 2:
+        print("Ganaste un auto!, Felicidades!")
+        exit()
 
 
 def draw():
     """Draw image and tiles."""
+    global n
     clear()
     goto(0, 0)
     shape(car)
     stamp()
 
-    for count in range(64):
+    for count in range(n * n):
         if hide[count]:
             x, y = xy(count)
             square(x, y)
@@ -75,13 +104,15 @@ def draw():
         up()
         goto(x + 2, y)
         color('black')
-        write(tiles[mark], font=('Arial', 30, 'normal'))
+        write(tiles[mark], font=('Arial', 20, 'normal'))
 
     update()
+    names()
     ontimer(draw, 100)
 
+
 shuffle(tiles)
-setup(550, 550, 500, 0)
+setup(420, 420, 370, 0)
 addshape(car)
 hideturtle()
 tracer(False)
