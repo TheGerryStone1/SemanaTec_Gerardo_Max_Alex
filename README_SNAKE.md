@@ -112,4 +112,9 @@ def names():
     down()
 ```
 ![snake](https://i.makeagif.com/media/5-11-2022/U2dOw4.gif)
+___
+# Links a Colabs
+- Gerardo: https://colab.research.google.com/drive/1ETM-O_EGAVZkSBSa-uexXQPgYlOMhAux#scrollTo=zaB1buOjtqLb
+- Max: https://colab.research.google.com/drive/1KFTFZqBSyOn2AqhoWEWMQPFLowlJrYK3?usp=sharing
+- Alex: https://colab.research.google.com/drive/1ajk2L4g67xU8BQKCe1_6ZP8m5jKoM5ZD?usp=sharing
 
