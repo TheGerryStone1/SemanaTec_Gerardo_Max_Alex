@@ -101,9 +101,13 @@ tiles = list([
         "\U0001F928", "\U0001F610", "\U0001F611",
         "\U0001F636", "\U0001F612", "\U0001F644",
         "\U0001F62C", "\U0001F62A", "\U0001F924",
-        "\U0001F634", "\U0001F637", "\U0001F912",
+        "\U0001F634", "\U0001F637",
         ]) * 2
 ```
-**Gif de Funcionamiento**
+![memorama](https://media.giphy.com/media/wxPNT2AJDcZ7mbRChH/giphy.gif)
+___
 
 **Link de Videos**
+- Gerardo Mora:
+- Maximiliano Martínez: https://youtu.be/ykcISVGinz8
+- Alejandro Treviño: https://youtu.be/kR9ICiDWp1Y
