@@ -108,6 +108,6 @@ tiles = list([
 ___
 
 **Link de Videos**
-- Gerardo Mora:
+- Gerardo Mora: https://drive.google.com/file/d/1zptQalSWlSCi5FGnBX7Jwn5fWjs-kyVk/view?usp=sharing
 - Maximiliano Martínez: https://youtu.be/ykcISVGinz8
 - Alejandro Treviño: https://youtu.be/kR9ICiDWp1Y
